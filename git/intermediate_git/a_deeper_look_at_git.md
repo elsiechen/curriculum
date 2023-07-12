@@ -17,6 +17,7 @@ This section contains a general overview of topics that you will learn in this l
 * Dangers of history-changing operations
 * Best practices of history-changing operations
 * Pointers
+* When to use git checkout commit-id
 
 ### Changing History
 
@@ -193,6 +194,23 @@ So what is a branch? Based off of your exposure, you might be visualizing a bran
 Now that you've had a second to gather your thoughts and attempt to wrap your head around this concept, it might help to go back and look at a concrete example of pointers we used in this lesson. Let's think back to our use of `git rebase -i HEAD~2`. If you can remember, this command lets us edit the last two commits. Do you have any guesses on how Git knew which two commits to edit? That's right, by using pointers! We start at HEAD, which is a special pointer for keeping track of the branch you're currently on. HEAD points to our most recent commit in the current branch. That commit points to the commit made directly before it, which we can call commit two. That's how `git rebase -i HEAD~2` starts with a HEAD pointer, and then follows subsequent pointers to find which two commits to edit.
 
 You might be feeling overwhelmed at this point, so let's recap what we've learned. A branch is simply a pointer to a single commit. A commit is a snapshot, and it's a pointer to the commit directly behind it in history. That's it!
+
+### When to use git checkout commit-id
+Performing git checkout commit is appropriate in certain situations when you want to temporarily explore or examine the state of a specific commit in your Git repository's history. Here are a few situations where using git checkout commit can be useful:
+
+1. Code Review: If you want to review the changes made in a specific commit, you can use git checkout commit to temporarily switch your working directory to that commit. This allows you to inspect the code changes, review the modifications, and compare them with other commits or branches.
+
+2. Debugging: When encountering a bug or an issue in your project, you may want to analyze the state of the codebase at a particular commit. By checking out a specific commit using git checkout commit, you can run tests, debug the code, and investigate the conditions that led to the problem.
+
+3. Historical Analysis: Sometimes, you may need to understand how a specific feature or behavior evolved over time. By checking out a commit from the past, you can analyze the codebase at that particular point and trace the changes and improvements made since then.
+
+4. Experimentation: Checking out a specific commit allows you to create a detached HEAD state, where you are not on any particular branch. This state enables you to experiment, make changes, and test ideas without affecting the existing branches or commit history.
+
+5. Recovery: In certain cases, you may accidentally delete or modify important files in your working directory. By checking out a commit that predates the unwanted changes, you can restore the files to their previous state.
+
+It's important to note that checking out a commit with git checkout commit creates a detached HEAD state, meaning you are not on any branch. Be cautious with making changes in this state, as new commits created will not be part of any branch and may be lost if you switch branches or reset to a different commit.
+
+Overall, using git checkout commit is suitable when you need to explore or analyze the state of a specific commit in your repository's history, review changes, debug issues, perform historical analysis, or experiment without affecting the existing branches.
 
 ### Assignment
 
